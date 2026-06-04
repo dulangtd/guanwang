@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="质感之家 - 智能结局产品专业制造商，专注于智能控制终端的研发、生产与销售，为全球客户提供高品质智能家居解决方案。">
+    <meta name="keywords" content="智能结局,智能家居,智能控制终端,自研自产自销,智能硬件,质感之家">
+    <meta name="author" content="质感之家">
+    <title>质感之家 - 智能结局产品制造商</title>
+    <style>
+        :root {
+            --primary: #d5ecf9;
+            --secondary: #a2c5d6;
+            --accent: #89a5b5;
+            --dark: #3a4a5f;
+            --light: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), #e8f4fc);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 1px 30px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(137, 165, 181, 0.3);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 5% 80px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, #ffffff 100%);
+            position: relative;
+        }
+
+        .hero-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        .hero-image {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+            width: 100%;
+            height: 500px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transform: scale(1.01);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 3.2rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-desc {
+            font-size: 1.2rem;
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 120px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 600px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transform: scale(1.01);
+        }
+
+        .about-content h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            line-height: 2;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .about-stat {
+            background: var(--primary);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            transition: var(--transition);
+        }
+
+        .about-stat:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(137, 165, 181, 0.2);
+        }
+
+        .about-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-stat-label {
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+
+        .products {
+            padding: 200px 5% 150px;
+            background: var(--gradient);
+            position: relative;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(137, 165, 181, 0.1), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(137, 165, 181, 0.2);
+        }
+
+        .product-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: var(--accent);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .services.about {
+            padding: 150px 5% 250px;
+            background: var(--light);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50px;
+            padding-left: 0;
+            margin-bottom: 60px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50px;
+        }
+
+        .timeline-content {
+            background: var(--primary);
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            padding: 35px;
+            border-radius: 15px;
+            max-width: 500px;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px rgba(137, 165, 181, 0.2);
+        }
+
+        .timeline-year {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-content p {
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+            border: 4px solid var(--light);
+            z-index: 1;
+        }
+
+        .tech-advantages {
+            padding: 150px 5%;
+            background: var(--gradient);
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .advantage-item {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            padding: 50px;
+            border-radius: 20px;
+            transition: var(--transition);
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .advantage-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(137, 165, 181, 0.2);
+        }
+
+        .advantage-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .advantage-content h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .advantage-content p {
+            font-size: 1rem;
+            color: var(--accent);
+            line-height: 1.8;
+        }
+
+        .employee-care {
+            padding: 150px 5%;
+            background: linear-gradient(135deg, rgba(213, 236, 249, 0.3) 0%, rgba(232, 244, 252, 0.5) 100%);
+        }
+
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .care-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            transition: var(--transition);
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .care-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(137, 165, 181, 0.2);
+        }
+
+        .care-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .care-content h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .care-content p {
+            font-size: 1rem;
+            color: var(--accent);
+            line-height: 1.8;
+        }
+
+        .care-quote {
+            max-width: 900px;
+            margin: 80px auto 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 60px;
+            border: 1px solid rgba(162, 197, 214, 0.3);
+        }
+
+        .care-quote p {
+            font-size: 1.5rem;
+            color: var(--dark);
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .care-quote-author {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .news.about {
+            padding: 150px 5% 250px;
+            background: var(--light);
+        }
+
+        .news-list {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            background: var(--primary);
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .news-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent);
+        }
+
+        .news-date {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .news-content h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .news-content p {
+            font-size: 1rem;
+            color: var(--accent);
+        }
+
+        .contact {
+            padding: 150px 5%;
+            background: var(--gradient);
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--accent);
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            padding: 50px;
+            border-radius: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(162, 197, 214, 0.3);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(137, 165, 181, 0.1);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 5% 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 2;
+        }
+
+        .footer-column h4 {
+            font-size: 1.1rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .advantage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .care-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .care-quote {
+                padding: 40px 30px;
+            }
+
+            .care-quote p {
+                font-size: 1.2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-right: 0;
+                padding-left: 60px;
+                justify-content: flex-start;
+            }
+
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(162, 197, 214, 0.4);
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#home" class="logo">
+                <img src="images/logo.png" alt="质感之家 Logo">
+                <span class="logo-text">质感之家</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#products">核心业务</a></li>
+                <li><a href="#history">发展历程</a></li>
+                <li><a href="#advantage">公司优势</a></li>
+                <li><a href="#care">员工关怀</a></li>
+                <li><a href="#news">新闻中心</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <button class="btn">免费咨询</button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">✦ 新起点 · 新未来</div>
+                <h1 class="hero-title">智能结局产品制造商</h1>
+                <p class="hero-subtitle">
+                    创始团队深耕行业 10+ 年 · 全新启航<br>
+                    自研自产自销 · 致力于打造高品质智能硬件产品
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn">了解更多</button>
+                    <button class="btn" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">联系我们</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">年团队经验</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">全新</div>
+                        <div class="stat-label">企业启航</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">发展潜力</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="33.png" alt="厂区图">
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">About Us</div>
+                <h2 class="section-title">关于我们</h2>
+                <p class="section-desc">
+                    质感之家是一家专注于智能结局产品研发、生产和销售的高新技术企业
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="33.png" alt="生产基地">
+                </div>
+                <div class="about-content">
+                    <h3>新企业 · 新未来</h3>
+                    <p>
+                        质感之家是一家全新成立的智能结局产品制造企业，虽然公司年轻，但创始团队拥有10年以上的行业经验。我们致力于通过自主研发、自主生产、自主销售的全产业链模式，为客户提供高品质的智能控制终端产品。
+                    </p>
+                    <p>
+                        我们拥有现代化的生产基地和专业的技术团队，从成立之初就建立了严格的品质管理体系，确保每一件产品都达到行业领先标准。
+                    </p>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <div class="about-stat-number">全新</div>
+                            <div class="about-stat-label">企业成立</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">10年+</div>
+                            <div class="about-stat-label">团队经验</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">现代化</div>
+                            <div class="about-stat-label">生产基地</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">高标准</div>
+                            <div class="about-stat-label">品质管理</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Core Business</div>
+                <h2 class="section-title">核心业务</h2>
+                <p class="section-desc">
+                    四大核心业务板块，构建完整智能硬件产业链
+                </p>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">🔬</div>
+                    <h3>产品研发</h3>
+                    <p>自主研发智能控制终端核心技术，拥有多项国家专利</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🏭</div>
+                    <h3>生产制造</h3>
+                    <p>现代化生产基地，严格品控体系保证产品质量</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">📦</div>
+                    <h3>销售服务</h3>
+                    <p>完善的销售网络，提供全方位售前售后服务</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-icon">🌍</div>
+                    <h3>国际贸易</h3>
+                    <p>产品远销全球多个国家和地区，国际品质认证</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="history">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Our Journey</div>
+                <h2 class="section-title">发展历程</h2>
+                <p class="section-desc">
+                    从初创到领先，见证每一次突破与成长
+                </p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h4>企业成立</h4>
+                        <p>质感之家正式注册成立，开启智能硬件新篇章</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h4>团队组建</h4>
+                        <p>核心团队到位，建立研发、生产、销售团队</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
+                        <h4>产品上市</h4>
+                        <p>首款智能结局产品正式发布，进入市场</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">未来</div>
+                        <h4>品牌发展</h4>
+                        <p>致力于成为行业领先的智能硬件品牌</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-advantages" id="advantage">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Our Advantages</div>
+                <h2 class="section-title">公司优势</h2>
+                <p class="section-desc">
+                    四大核心优势，奠定行业领先地位
+                </p>
+            </div>
+            <div class="advantage-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">🔬</div>
+                    <div class="advantage-content">
+                        <h3>技术创新</h3>
+                        <p>核心技术自主研发，专业技术团队，持续创新投入，追求技术领先</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">🏭</div>
+                    <div class="advantage-content">
+                        <h3>品质保障</h3>
+                        <p>现代化生产基地，先进生产设备，从成立之初建立严格的品控体系</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">👥</div>
+                    <div class="advantage-content">
+                        <h3>经验团队</h3>
+                        <p>创始团队拥有10年以上行业经验，专业背景扎实，实战经验丰富</p>
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">🚀</div>
+                    <div class="advantage-content">
+                        <h3>发展潜力</h3>
+                        <p>全新企业活力无限，灵活应对市场变化，未来发展空间广阔</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="employee-care" id="care">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Employee Care</div>
+                <h2 class="section-title">员工关怀</h2>
+                <p class="section-desc">
+                    有温度的企业，关爱每一位伙伴
+                </p>
+            </div>
+            <div class="care-grid">
+                <div class="care-card">
+                    <div class="care-icon">💪</div>
+                    <div class="care-content">
+                        <h3>健康保障</h3>
+                        <p>为全体员工提供完善的五险一金，定期组织健康体检，关心每一位伙伴的身体健康</p>
+                    </div>
+                </div>
+                <div class="care-card">
+                    <div class="care-icon">🎓</div>
+                    <div class="care-content">
+                        <h3>成长培训</h3>
+                        <p>完善的培训体系，广阔的发展空间，助力每位员工实现职业成长与自我价值</p>
+                    </div>
+                </div>
+                <div class="care-card">
+                    <div class="care-icon">🤝</div>
+                    <div class="care-content">
+                        <h3>扁平管理</h3>
+                        <p>平等、开放的工作氛围，鼓励创新与表达，让每一位员工都能发光发热</p>
+                    </div>
+                </div>
+                <div class="care-card">
+                    <div class="care-icon">🏖️</div>
+                    <div class="care-content">
+                        <h3>弹性假期</h3>
+                        <p>法定节假日、带薪年假、弹性工作时间，工作生活两不误，享受美好生活</p>
+                    </div>
+                </div>
+                <div class="care-card">
+                    <div class="care-icon">🎉</div>
+                    <div class="care-content">
+                        <h3>多彩活动</h3>
+                        <p>定期举办团建活动、节日庆典、生日会，让工作充满乐趣，增强团队凝聚力</p>
+                    </div>
+                </div>
+                <div class="care-card">
+                    <div class="care-icon">🍽️</div>
+                    <div class="care-content">
+                        <h3>福利关怀</h3>
+                        <p>免费工作餐、节日礼品、员工关怀基金，让每位员工感受到家的温暖</p>
+                    </div>
+                </div>
+            </div>
+            <div class="care-quote">
+                <p>"我们相信，幸福的员工才能创造卓越的产品。"</p>
+                <div class="care-quote-author">— 质感之家创始人</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news" id="news">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">News Center</div>
+                <h2 class="section-title">新闻中心</h2>
+                <p class="section-desc">
+                    最新动态，了解行业资讯与公司发展
+                </p>
+            </div>
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-date">2024</div>
+                    <div class="news-content">
+                        <h3>质感之家正式注册成立</h3>
+                        <p>全新企业，全新起点，质感之家正式开启智能硬件制造新篇章</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">2024</div>
+                    <div class="news-content">
+                        <h3>现代化生产基地投入使用</h3>
+                        <p>配备先进生产设备，建立完善品质管理体系，为高质量产品保驾护航</p>
+                    </div>
+                </div>
+                <div class="news-item">
+                    <div class="news-date">即将</div>
+                    <div class="news-content">
+                        <h3>首款智能结局产品即将发布</h3>
+                        <p>目前产品研发进入最后阶段，期待为市场带来高品质的智能硬件产品</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>联系我们</h3>
+                <p>
+                    无论您是想了解产品、合作洽谈还是寻求技术支持，我们都期待与您的交流。
+                    质感之家，您值得信赖的智能结局产品合作伙伴。
+                </p>
+                <button class="btn" style="width: fit-content;">立即咨询</button>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="您的姓名" required>
+                <input type="email" placeholder="邮箱地址" required>
+                <textarea rows="5" placeholder="留言内容" required></textarea>
+                <button type="submit">提交留言</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>质感之家</h3>
+                <p>
+                    质感之家是一家专注于智能结局产品研发、生产和销售的高新技术企业。
+                    我们致力于为全球客户提供高品质的智能控制终端产品。
+                </p>
+            </div>
+            <div class="footer-column">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#products">核心业务</a></li>
+                    <li><a href="#care">员工关怀</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>产品服务</h4>
+                <ul>
+                    <li><a href="#products">产品研发</a></li>
+                    <li><a href="#products">生产制造</a></li>
+                    <li><a href="#products">销售服务</a></li>
+                    <li><a href="#products">国际贸易</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>联系方式</h4>
+                <ul>
+                    <li><a href="#contact">联系我们</a></li>
+                    <li><a href="#news">新闻中心</a></li>
+                    <li><a href="#contact">加入我们</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 质感之家 版权所有 | 智能结局产品制造商</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            const backToTop = document.querySelector('.back-to-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            
+            btn.textContent = '提交中...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('感谢您的留言！我们会尽快与您联系。');
+                this.reset();
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
